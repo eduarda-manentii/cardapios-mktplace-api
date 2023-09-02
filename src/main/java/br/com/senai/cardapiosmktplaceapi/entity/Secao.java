@@ -1,7 +1,6 @@
 package br.com.senai.cardapiosmktplaceapi.entity;
 
 import br.com.senai.cardapiosmktplaceapi.entity.enums.Status;
-import br.com.senai.cardapiosmktplaceapi.entity.enums.TiposDeCategoria;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -18,9 +17,9 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 @Data @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-@Table(name = "categorias")
-@Entity(name = "Categoria")
-public class Categoria {
+@Table(name = "secoes")
+@Entity(name = "Secao")
+public class Secao {
 	
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,28 +27,22 @@ public class Categoria {
 	@EqualsAndHashCode.Include
 	private Integer id;
 	
+	@NotBlank(message = "O nome da secão é obrigatório.")
 	@Size(max = 100, message = "O nome da categoria não deve conter mais de 100 caracteres.")
-	@NotBlank(message = "O nome da categoria é obrigatório.")
 	@Column(name = "nome")
 	private String nome;
 	
-	@NotNull(message = "O tipo da categoria é obrigatório.")
-	@Enumerated(value = EnumType.STRING)
-	@Column(name = "tipo")
-	private TiposDeCategoria tipo;
-	
-	@NotNull(message = "O status da categoria é obrigatório.")
+	@NotNull(message = "O status da seção é obrigatório.")
 	@Enumerated(value = EnumType.STRING)
 	@Column(name = "status")
 	private Status status;
-
 	
-	public Categoria() {
+	public Secao() {
 		this.status = Status.A;
 	}
 	
 	@Transient
-	public boolean isPersistido() {
+	public boolean isPersistida() {
 		return getId() != null && getId() > 0;
 	}
 	

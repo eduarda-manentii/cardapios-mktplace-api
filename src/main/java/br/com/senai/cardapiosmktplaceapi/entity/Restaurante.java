@@ -21,8 +21,7 @@ import jakarta.validation.constraints.Size;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
-@Data
-@EqualsAndHashCode(onlyExplicitlyIncluded = true)
+@Data @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Table(name = "restaurantes")
 @Entity(name = "Restaurante")
 public class Restaurante {

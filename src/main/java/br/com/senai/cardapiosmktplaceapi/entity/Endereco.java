@@ -6,8 +6,7 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
 
-@Data
-@Embeddable
+@Data @Embeddable
 public class Endereco {
 
 	@Column(name = "cidade")
