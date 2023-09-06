@@ -28,7 +28,7 @@ public class OpcaoDoCardapio {
 	
 	@EmbeddedId
 	@EqualsAndHashCode.Include
-	@NotNull(message = "O Id da opção do cardápio é obrigatório.")
+	@NotNull(message = "O id da opção do cardápio é obrigatório.")
 	private OpcaoDoCardapioId id;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
@@ -38,6 +38,7 @@ public class OpcaoDoCardapio {
 	private Cardapio cardapio;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
+	@MapsId("idDaOpcao")
 	@JoinColumn(name = "id_opcao")
 	@NotNull(message = "A opção é obrigatória.")
 	private Opcao opcao;
@@ -58,12 +59,11 @@ public class OpcaoDoCardapio {
 	private Confirmacao recomendado;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
-	@NotNull(message = "A seção é obrgatória.")
+	@NotNull(message = "A seção é obrigatória.")
 	@JoinColumn(name = "id_secao")
 	private Secao secao;
 	
 	public OpcaoDoCardapio() {
 		this.status = Status.A;
 	}
-	
 }
