@@ -7,5 +7,6 @@ import br.com.senai.cardapiosmktplaceapi.entity.Opcao;
 
 @Repository
 public interface OpcoesRepository extends JpaRepository<Opcao, Integer> {
+	
 
 }
