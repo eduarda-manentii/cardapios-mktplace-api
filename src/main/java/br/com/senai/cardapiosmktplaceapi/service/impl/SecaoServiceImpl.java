@@ -1,27 +1,17 @@
 package br.com.senai.cardapiosmktplaceapi.service.impl;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 import br.com.senai.cardapiosmktplaceapi.entity.Restaurante;
 import br.com.senai.cardapiosmktplaceapi.entity.Secao;
 import br.com.senai.cardapiosmktplaceapi.entity.enums.Status;
-import br.com.senai.cardapiosmktplaceapi.repository.SecoesRepository;
 import br.com.senai.cardapiosmktplaceapi.service.SecaoService;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Positive;
-import jakarta.validation.constraints.Size;
 
 public class SecaoServiceImpl implements SecaoService {
 	
-	@Autowired
-	private SecoesRepository repository;
-
 	@Override
 	public Secao salvar(Secao secao) {
-		Secao outraSecao = repository.buscarPor(secao.getId());
 		return null;
 	}
 
