@@ -10,7 +10,6 @@ import org.springframework.stereotype.Repository;
 import br.com.senai.cardapiosmktplaceapi.entity.Secao;
 import br.com.senai.cardapiosmktplaceapi.entity.enums.Status;
 
-
 @Repository
 public interface SecoesRepository  extends JpaRepository<Secao, Integer> {
 	
@@ -20,6 +19,9 @@ public interface SecoesRepository  extends JpaRepository<Secao, Integer> {
 	
 	@Query(value = "SELECT s FROM Secao s WHERE s.id = :id")
 	public Secao buscarPor(Integer id);
+	
+	@Query(value = "SELECT s " + "FROM Secao s " + "WHERE Upper(s.nome) = Upper(:nome)")
+	public Secao buscarPor(String nome);
 	
 	@Modifying
 	@Query(value = "UPDATE Secao s SET s.status = :status WHERE s.id = :id")
