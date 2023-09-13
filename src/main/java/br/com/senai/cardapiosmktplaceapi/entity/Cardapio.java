@@ -38,7 +38,7 @@ public class Cardapio {
 	private Integer id;
 	
 	@NotBlank(message = "O nome do cardápio é obrigatório.")
-	@Size(max = 100, message = "O nome da categoria não deve conter mais de 100 caracteres.")
+	@Size(max = 100, message = "O nome do cardápio não deve conter mais de 100 caracteres.")
 	@Column(name = "nome")
 	private String nome;
 	
@@ -58,7 +58,7 @@ public class Cardapio {
 	private Restaurante restaurante;
 	
 	@OneToMany(mappedBy = "cardapio", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
-	private List<NovaOpcaoCardapio> opcoes;
+	private List<OpcaoDoCardapio> opcoes;
 	
 	public Cardapio() {
 		status = Status.A;
