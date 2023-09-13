@@ -4,43 +4,44 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import br.com.senai.cardapiosmktplaceapi.entity.Categoria;
-import br.com.senai.cardapiosmktplaceapi.entity.Opcao;
+import br.com.senai.cardapiosmktplaceapi.dto.CardapioSalvo;
+import br.com.senai.cardapiosmktplaceapi.dto.NovoCardapio;
+import br.com.senai.cardapiosmktplaceapi.entity.Cardapio;
 import br.com.senai.cardapiosmktplaceapi.entity.Restaurante;
 import br.com.senai.cardapiosmktplaceapi.entity.enums.Status;
-import br.com.senai.cardapiosmktplaceapi.service.OpcaoService;
+import br.com.senai.cardapiosmktplaceapi.service.CardapioService;
 
 @Service
-public class OpcaoServiceImpl implements OpcaoService {
-	
+public class CardapioServiceImp implements CardapioService {
+
 	@Override
-	public Opcao salvar(Opcao opcao) {
+	public Cardapio inserir(NovoCardapio novoCardapio) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Page<Opcao> listarPor(Categoria categoria, Restaurante restaurante, Pageable paginacao) {
+	public Cardapio alterar(CardapioSalvo cardapioSalvo) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Categoria buscarPor(Integer id) {
+	public Page<Cardapio> listarPor(Restaurante restaurante, Pageable paginacao) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public void atualizarStatusPor( Integer id, Status status) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public Opcao excluirPor(Integer id) {
+	public Cardapio buscarPor(Integer id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public void atualizarStatusPor(Integer id, Status status) {
+		// TODO Auto-generated method stub
+	}
+
 
 }
