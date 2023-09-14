@@ -3,4 +3,5 @@ bin/
 .classpath
 .project
 target/
+src/main/resources
 
