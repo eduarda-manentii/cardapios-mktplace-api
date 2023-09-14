@@ -3,7 +3,6 @@ package br.com.senai.cardapiosmktplaceapi.entity;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.senai.cardapiosmktplaceapi.dto.NovaOpcaoCardapio;
 import br.com.senai.cardapiosmktplaceapi.entity.enums.Status;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;

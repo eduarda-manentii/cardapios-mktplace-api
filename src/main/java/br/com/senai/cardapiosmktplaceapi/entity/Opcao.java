@@ -15,6 +15,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.persistence.Transient;
 import jakarta.validation.constraints.DecimalMax;
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.Digits;
@@ -69,6 +70,18 @@ public class Opcao {
 	@NotNull(message = "O restaurante é obrigatório.")
 	private Restaurante restaurante;
 	
+	public Opcao() {
+		this.status = Status.A;
+	}
 	
-
+	@Transient
+	public boolean isAtiva() {
+		return getStatus() == Status.A;
+	}
+	
+	@Transient
+	public boolean isEmPromocao() {
+		return getPromocao() == Confirmacao.S;
+	}
+	
 }
