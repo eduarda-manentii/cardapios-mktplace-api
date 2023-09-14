@@ -80,6 +80,11 @@ public class Opcao {
 	}
 	
 	@Transient
+	public boolean isPersistido() {
+		return getId() != null && getId() > 0;
+	}
+	
+	@Transient
 	public boolean isEmPromocao() {
 		return getPromocao() == Confirmacao.S;
 	}
