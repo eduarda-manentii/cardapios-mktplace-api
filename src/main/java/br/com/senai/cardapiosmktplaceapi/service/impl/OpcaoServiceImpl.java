@@ -32,12 +32,11 @@ public class OpcaoServiceImpl implements OpcaoService {
 	
 	@Override
 	public Opcao salvar(Opcao opcao) {
-		Opcao outraOpcao = repository.buscarPor(opcao.getId());
-		if (outraOpcao != null) {
-			if (opcao.isPersistido()) {
-				Preconditions.checkArgument(outraOpcao.equals(opcao), 
-						"O nome da opção já existe.");
-			}
+	    Opcao outraOpcao = repository.buscarPorNomeRestaurante(opcao.getNome(), opcao.getRestaurante().getId());
+		if (outraOpcao != null && outraOpcao.isPersistido()) {
+			Preconditions.checkArgument(outraOpcao.equals(opcao)
+					&& outraOpcao.getRestaurante().getId() == opcao.getRestaurante().getId(), 
+					"O nome da opção já existe nesse restaurante.");
 		}
 		Opcao opcaoSalva = repository.save(opcao);
 		return opcaoSalva;
