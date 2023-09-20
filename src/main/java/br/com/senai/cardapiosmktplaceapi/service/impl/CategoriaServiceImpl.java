@@ -13,6 +13,7 @@ import br.com.senai.cardapiosmktplaceapi.entity.enums.TiposDeCategoria;
 import br.com.senai.cardapiosmktplaceapi.repository.CategoriasRepository;
 import br.com.senai.cardapiosmktplaceapi.repository.RestaurantesRepository;
 import br.com.senai.cardapiosmktplaceapi.service.CategoriaService;
+import jakarta.transaction.Transactional;
 
 @Service
 public class CategoriaServiceImpl implements CategoriaService {
@@ -25,18 +26,17 @@ public class CategoriaServiceImpl implements CategoriaService {
 
 	@Override
 	public Categoria salvar(Categoria categoria) {
-		Categoria outraCategoria = repository.buscarPor(categoria.getNome(), categoria.getTipo());
-		if (outraCategoria != null) {
-			if(categoria.isPersistido()) {
-				Preconditions.checkArgument(outraCategoria.equals(categoria), 
-						"O nome da categoria já esta em uso.");
-			}
+		Categoria outraCategoria = repository.buscarPor(
+				categoria.getNome(), categoria.getTipo());
+		if (outraCategoria.isPersistido()) {
+			Preconditions.checkArgument(outraCategoria.equals(categoria), 
+					"O nome da categoria já está em uso");
 		}
-		Categoria categoriaSalva = repository.save(categoria);
+		Categoria categoriaSalva = repository.save(categoria); 
 		return categoriaSalva;
 	}
 
-	@Override
+	@Override @Transactional
 	public void atualizarStatusPor(Integer id, Status status) {
 		Categoria categoriaEncontrada = repository.buscarPor(id);
 		Preconditions.checkNotNull(categoriaEncontrada,
@@ -64,7 +64,7 @@ public class CategoriaServiceImpl implements CategoriaService {
 		Categoria categoriaParaExlusao = buscarPor(id);
 		Long qtdeDeRestaurantesVinculados = restauranteRepository.contarPor(id);
 		Preconditions.checkArgument(qtdeDeRestaurantesVinculados == 0, "Não é possível remover pois existem restaurantes vinculados.");
-		 this.repository.deleteById(categoriaParaExlusao.getId());
+		this.repository.deleteById(categoriaParaExlusao.getId());
 		return categoriaParaExlusao;
 	}
 
