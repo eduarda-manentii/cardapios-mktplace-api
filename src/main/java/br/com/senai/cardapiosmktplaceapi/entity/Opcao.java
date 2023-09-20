@@ -41,6 +41,7 @@ public class Opcao {
 	@Column(name = "nome")
 	private String nome;
 	
+	@NotNull(message = "A descrição da opção é obrigatória.")
 	@Column(name = "descricao")
 	private String descricao;
 	

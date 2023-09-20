@@ -17,6 +17,8 @@ import br.com.senai.cardapiosmktplaceapi.repository.CardapiosRepository;
 import br.com.senai.cardapiosmktplaceapi.repository.OpcoesRepository;
 import br.com.senai.cardapiosmktplaceapi.service.CategoriaService;
 import br.com.senai.cardapiosmktplaceapi.service.OpcaoService;
+import jakarta.persistence.Transient;
+import jakarta.transaction.Transactional;
 
 @Service
 public class OpcaoServiceImpl implements OpcaoService {
@@ -60,7 +62,7 @@ public class OpcaoServiceImpl implements OpcaoService {
 		return opcaoEncontrado;
 	}
 
-	@Override
+	@Override @Transactional
 	public void atualizarStatusPor(Integer id, Status status) {
 		Opcao opcaoEncontrado = repository.buscarPor(id);
 		Preconditions.checkNotNull(opcaoEncontrado, "Não existe opção vinculada ao id informado.");
