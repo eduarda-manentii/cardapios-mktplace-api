@@ -32,6 +32,6 @@ public interface OpcoesRepository extends JpaRepository<Opcao, Integer> {
 	public Page<CarregarOpcao> listarPor(String nome, Categoria categoria, Restaurante restaurante, Pageable paginacao);
 	
 	@Modifying
-	@Query(value = "UPDATE Opcao o SET o.status = :status WHERE r.id = :id")
+	@Query(value = "UPDATE Opcao o SET o.status = :status WHERE o.id = :id")
 	public void atualizarPor(Integer id, Status status);
 }
