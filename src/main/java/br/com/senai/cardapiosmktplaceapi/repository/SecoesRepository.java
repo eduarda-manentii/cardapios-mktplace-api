@@ -20,7 +20,9 @@ public interface SecoesRepository  extends JpaRepository<Secao, Integer> {
 	@Query(value = "SELECT s FROM Secao s WHERE s.id = :id")
 	public Secao buscarPor(Integer id);
 	
-	@Query(value = "SELECT s " + "FROM Secao s " + "WHERE Upper(s.nome) = Upper(:nome)")
+	@Query(value = "SELECT s " 
+			+ "FROM Secao s " 
+			+ "WHERE Upper(s.nome) = Upper(:nome)")
 	public Secao buscarPor(String nome);
 	
 	@Modifying

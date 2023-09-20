@@ -105,9 +105,6 @@ public class CardapioServiceImp implements CardapioService {
 		this.repository.atualizarPor(id, status);
 	}
 	
-	
-	//locals methods
-	
 	private void atualizarPrecosDas(List<OpcaoDoCardapio> opcoesDoCardapio) {
 		for (OpcaoDoCardapio opcaoDoCardapio : opcoesDoCardapio) {
 			if(opcaoDoCardapio.getOpcao().isEmPromocao()) {
