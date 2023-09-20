@@ -28,7 +28,7 @@ public class CategoriaServiceImpl implements CategoriaService {
 	public Categoria salvar(Categoria categoria) {
 		Categoria outraCategoria = repository.buscarPor(
 				categoria.getNome(), categoria.getTipo());
-		if (outraCategoria.isPersistido()) {
+		if (outraCategoria != null && outraCategoria.isPersistido()) {
 			Preconditions.checkArgument(outraCategoria.equals(categoria), 
 					"O nome da categoria já está em uso");
 		}
