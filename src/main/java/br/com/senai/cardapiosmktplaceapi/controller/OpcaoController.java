@@ -26,7 +26,6 @@ import br.com.senai.cardapiosmktplaceapi.dto.CarregarOpcao;
 import br.com.senai.cardapiosmktplaceapi.entity.Categoria;
 import br.com.senai.cardapiosmktplaceapi.entity.Opcao;
 import br.com.senai.cardapiosmktplaceapi.entity.Restaurante;
-import br.com.senai.cardapiosmktplaceapi.entity.Secao;
 import br.com.senai.cardapiosmktplaceapi.entity.enums.Status;
 import br.com.senai.cardapiosmktplaceapi.service.OpcaoService;
 import jakarta.transaction.Transactional;

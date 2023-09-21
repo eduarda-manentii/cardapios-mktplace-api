@@ -18,42 +18,42 @@ import br.com.senai.cardapiosmktplaceapi.service.RestauranteService;
 @RestController
 @RequestMapping("/cardapios")
 public class CardapioController {
-	
-	@Autowired 	@Qualifier("cardapioServiceProxy")
-	private CardapioService service;
-	
-	@Autowired @Qualifier("restauranteServiceImpl")
-	private RestauranteService restauranteService;
-	
-	private Map<String, Object> converterCardapio(Cardapio cardapio) {
-		Map<String, Object> cardapioMap = new HashMap<String, Object>();
-		cardapioMap.put("id", cardapio.getId());
-		cardapioMap.put("nome", cardapio.getNome());
-		cardapioMap.put("descricao", cardapio.getDescricao());
-		cardapioMap.put("status", cardapio.getStatus());
-		Map<String, Object> restauranteMap = new HashMap<String, Object>();
-		restauranteMap.put("id", cardapio.getRestaurante().getId());
-		restauranteMap.put("nome", cardapio.getRestaurante().getNome());
-		cardapioMap.put("restauranteMap", restauranteMap);
-		List<Map<String, Object>> OpcoesMap = new ArrayList<Map<String, Object>>();
-		for (OpcaoDoCardapio opcaoDoCardapio : cardapio.getOpcoes()) {
-			Map<String, Object> opcaoMap = new HashMap<String, Object>();
-			opcaoMap.put("id", opcaoDoCardapio.getOpcao().getId());
-			opcaoMap.put("nome", opcaoDoCardapio.getOpcao().getNome());
-			opcaoMap.put("promocao",  opcaoDoCardapio.getOpcao().getPromocao());
-			opcaoMap.put("recomendado",  opcaoDoCardapio.getRecomendado());
-			opcaoMap.put("preco",  opcaoDoCardapio.getPreco());
-			Map<String, Object> secaoMap = new HashMap<String, Object>();
-			secaoMap.put("id", opcaoDoCardapio.getSecao().getId());
-			secaoMap.put("nome", opcaoDoCardapio.getSecao().getNome());
-			opcaoMap.put("secao", secaoMap);
-			OpcoesMap.add(opcaoMap);
-		}
-		
-		cardapioMap.put("opcoes", OpcoesMap);
-		return cardapioMap;
-	}
-	
-	
+//	
+//	@Autowired 	@Qualifier("cardapioServiceProxy")
+//	private CardapioService service;
+//	
+//	@Autowired @Qualifier("restauranteServiceImpl")
+//	private RestauranteService restauranteService;
+//	
+//	private Map<String, Object> converterCardapio(Cardapio cardapio) {
+//		Map<String, Object> cardapioMap = new HashMap<String, Object>();
+//		cardapioMap.put("id", cardapio.getId());
+//		cardapioMap.put("nome", cardapio.getNome());
+//		cardapioMap.put("descricao", cardapio.getDescricao());
+//		cardapioMap.put("status", cardapio.getStatus());
+//		Map<String, Object> restauranteMap = new HashMap<String, Object>();
+//		restauranteMap.put("id", cardapio.getRestaurante().getId());
+//		restauranteMap.put("nome", cardapio.getRestaurante().getNome());
+//		cardapioMap.put("restauranteMap", restauranteMap);
+//		List<Map<String, Object>> OpcoesMap = new ArrayList<Map<String, Object>>();
+//		for (OpcaoDoCardapio opcaoDoCardapio : cardapio.getOpcoes()) {
+//			Map<String, Object> opcaoMap = new HashMap<String, Object>();
+//			opcaoMap.put("id", opcaoDoCardapio.getOpcao().getId());
+//			opcaoMap.put("nome", opcaoDoCardapio.getOpcao().getNome());
+//			opcaoMap.put("promocao",  opcaoDoCardapio.getOpcao().getPromocao());
+//			opcaoMap.put("recomendado",  opcaoDoCardapio.getRecomendado());
+//			opcaoMap.put("preco",  opcaoDoCardapio.getPreco());
+//			Map<String, Object> secaoMap = new HashMap<String, Object>();
+//			secaoMap.put("id", opcaoDoCardapio.getSecao().getId());
+//			secaoMap.put("nome", opcaoDoCardapio.getSecao().getNome());
+//			opcaoMap.put("secao", secaoMap);
+//			OpcoesMap.add(opcaoMap);
+//		}
+//		
+//		cardapioMap.put("opcoes", OpcoesMap);
+//		return cardapioMap;
+//	}
+//	
+//	
 
 }
