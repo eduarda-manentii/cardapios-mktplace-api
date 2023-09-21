@@ -13,7 +13,6 @@ public class InitApp {
 	public Hibernate5JakartaModule jsonHibernate5Module() {
 		return new Hibernate5JakartaModule();
 	}
-	
 
 	@Bean
 	public CommandLineRunner commandLinnerRunner(ApplicationContext ctx) {
