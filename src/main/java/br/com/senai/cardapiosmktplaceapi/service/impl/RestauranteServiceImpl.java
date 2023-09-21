@@ -15,6 +15,7 @@ import br.com.senai.cardapiosmktplaceapi.repository.CardapiosRepository;
 import br.com.senai.cardapiosmktplaceapi.repository.RestaurantesRepository;
 import br.com.senai.cardapiosmktplaceapi.service.CategoriaService;
 import br.com.senai.cardapiosmktplaceapi.service.RestauranteService;
+import jakarta.transaction.Transactional;
 
 @Service
 public class RestauranteServiceImpl implements RestauranteService {
@@ -31,19 +32,16 @@ public class RestauranteServiceImpl implements RestauranteService {
 	@Override
 	public Restaurante salvar(Restaurante restaurante) {
 		Restaurante outroRestaurante = repository.buscarPor(restaurante.getNome());
-		if (outroRestaurante != null) {
-			if (restaurante.isPersistido()) {
-				Preconditions.checkArgument(outroRestaurante.equals(restaurante), 
-						"O nome do restaurante já esta em uso.");
-			}
-			
+		if (outroRestaurante != null && outroRestaurante.isPersistido()) {
+ 			Preconditions.checkArgument(outroRestaurante.equals(restaurante), 
+					"O nome do restaurante já esta em uso.");
 		}
 		this.categoriaService.buscarPor(restaurante.getCategoria().getId());
 		Restaurante restauranteSalvo = repository.save(restaurante);
 		return restauranteSalvo;
 	}
 
-	@Override
+	@Override @Transactional
 	public void atualizarStatusPor(Integer id, Status status) {
 		Restaurante restauranteEncontrado = repository.buscarPor(id);
 		Preconditions.checkNotNull(restauranteEncontrado,
@@ -63,7 +61,7 @@ public class RestauranteServiceImpl implements RestauranteService {
 	public Restaurante buscarPor(Integer id) {
 		Restaurante restauranteEncontrado  = repository.buscarPor(id);
 		Preconditions.checkNotNull(restauranteEncontrado, "Não foi encontrado restaurante para o id informado");
-		Preconditions.checkArgument(restauranteEncontrado.isAtiva(), "O restaurante está inativo.");
+		Preconditions.checkArgument(restauranteEncontrado.getCategoria().isAtiva(), "A categoria está inativa.");
 		return restauranteEncontrado;
 	}
 
@@ -71,6 +69,7 @@ public class RestauranteServiceImpl implements RestauranteService {
 	public Restaurante excluirPor(Integer id) {
 		Restaurante restauranteParaExclusao = buscarPor(id);
 		Long qtdeDeCardapiosVinculados = cardapioRepository.contarPor(id);
+		Preconditions.checkArgument(restauranteParaExclusao.isAtiva(), "O restaurante está inativo.");
 		Preconditions.checkArgument(qtdeDeCardapiosVinculados == 0, "Não é possível remover pois existem cardapios vinculados.");
 		this.repository.deleteById(restauranteParaExclusao.getId());
 		return restauranteParaExclusao;

@@ -14,16 +14,26 @@ import br.com.senai.cardapiosmktplaceapi.entity.enums.Status;
 @Repository
 public interface RestaurantesRepository extends JpaRepository<Restaurante, Integer> {
 
-	@Query(value = "SELECT r " + "FROM Restaurante r  " + "JOIN FETCH r.categoria " + "WHERE r.id = :id")
+	@Query(value = "SELECT r " + "FROM Restaurante r  " 
+			+ "JOIN FETCH r.categoria " 
+			+ "WHERE r.id = :id")
 	public Restaurante buscarPor(Integer id);
 
-	@Query(value = "SELECT r " + "FROM Restaurante r " + "WHERE Upper(r.nome) = Upper(:nome)")
+	@Query(value = "SELECT r " 
+			+ "FROM Restaurante r " 
+			+ "WHERE Upper(r.nome) = Upper(:nome)")
 	public Restaurante buscarPor(String nome);
 
-	@Query(value = "SELECT r " + "FROM Restaurante r " + "JOIN FETCH r.categoria "
-			+ "WHERE Upper(r.nome) LIKE Upper(:nome) " + "AND r.categoria = :categoria "
+	@Query(value = "SELECT r " 
+			+ "FROM Restaurante r " 
+			+ "JOIN FETCH r.categoria "
+			+ "WHERE Upper(r.nome) LIKE Upper(:nome) " 
+			+ "AND r.categoria = :categoria "
 			+ "ORDER BY r.nome ", 
-			countQuery = "SELECT Count(r) FROM Restaurante r WHERE Upper(r.nome) LIKE Upper(:nome) AND r.categoria = :categoria ")
+			countQuery = "SELECT Count(r) "
+					+ "FROM Restaurante r "
+					+ "WHERE Upper(r.nome) LIKE Upper(:nome) "
+					+ "AND r.categoria = :categoria")
 	public Page<Restaurante> listarPor(String nome, Categoria categoria, Pageable paginacao);
 
 	@Modifying

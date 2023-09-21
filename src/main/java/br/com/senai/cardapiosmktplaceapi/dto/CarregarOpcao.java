@@ -1,7 +1,5 @@
 package br.com.senai.cardapiosmktplaceapi.dto;
 
-import br.com.senai.cardapiosmktplaceapi.entity.Categoria;
-import br.com.senai.cardapiosmktplaceapi.entity.Restaurante;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -15,9 +13,9 @@ public class CarregarOpcao {
 	private String nome;
 	
 	@NotNull(message = "O restaurante é obrigatório.")
-    private Restaurante restaurante;
+    private Integer idDoRestaurante;
 	
 	@NotNull(message = "A cateogira é obrigatória.")
-    private Categoria categoria;
+    private Integer idDaCategoria;
 
 }
