@@ -45,7 +45,7 @@ public class CategoriaController {
 			Categoria categoria) {
 		Preconditions.checkArgument(!categoria.isPersistido(), "A categoria não pode possuir ID na inserção.");
 		Categoria categoriaSalva = service.salvar(categoria);
-		return ResponseEntity.created(URI.create("/categoria/id/" + categoriaSalva.getId())).build();
+		return ResponseEntity.created(URI.create("/categorias/id/" + categoriaSalva.getId())).build();
 	}
 	
 	@PutMapping
