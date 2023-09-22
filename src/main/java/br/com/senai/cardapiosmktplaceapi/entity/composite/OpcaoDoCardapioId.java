@@ -14,5 +14,5 @@ public class OpcaoDoCardapioId {
 		private Integer IdDocardapio;
 		
 		@Column(name = "id_opcao")
-		private Integer idDaOpcap;
+		private Integer idDaOpcao;
 }

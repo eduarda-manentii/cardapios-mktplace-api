@@ -18,8 +18,8 @@ public class OpcaoDoCardapioServiceProxy implements OpcaoDoCardapioService {
 	private OpcaoDoCardapioService service;
 
 	@Override
-	public OpcaoDoCardapio inserir(NovaOpcaoCardapio novaOpcaoCardapio) {
-		return service.inserir(novaOpcaoCardapio);
+	public OpcaoDoCardapio inserir(OpcaoDoCardapio opcaoDoCardapio) {
+		return service.inserir(opcaoDoCardapio);
 	}
 
 	@Override

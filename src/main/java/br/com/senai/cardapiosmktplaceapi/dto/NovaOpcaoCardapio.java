@@ -15,7 +15,7 @@ import lombok.NoArgsConstructor;
 @Data @AllArgsConstructor @NoArgsConstructor
 public class NovaOpcaoCardapio {
 	
-	@NotNull(message = "O id da opção é obirgatório.")
+	@NotNull(message = "O id da opção é obrigatório.")
 	@Positive(message = "o id da opção deve ser positivo.")
 	private Integer idDaOpcao;
 	

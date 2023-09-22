@@ -18,11 +18,16 @@ public interface OpcoesDoCardapioRepository extends JpaRepository<OpcaoDoCardapi
 			+ "AND op.status = 'A' "
 			+ "AND o.cardapio.status = 'A'")
 	public OpcaoDoCardapio buscarPor(Opcao opcao, Cardapio cardapio);
-	
-//	@Query(value = "UPDATED OpcaoDoCardapio o SET o.cardapio ")
-//	public OpcaoDoCardapio atualizar(OpcaoDoCardapio opcao);
 
-	@Query(value = "SELECT Count(opc) FROM OpcaoDoCardapio opc WHERE opc.secao.id = :idDaSecao")
+	@Query(value = "SELECT Count(opc) "
+			+ "FROM OpcaoDoCardapio opc "
+			+ "WHERE opc.secao.id = :idDaSecao AND "
+			+ "opc.cardapio.id = :idDoCardapio")
+	public Long contarPor(Integer idDaSecao, Integer idDoCardapio);
+
+	@Query(value = "SELECT Count(opc) "
+			+ "FROM OpcaoDoCardapio opc "
+			+ "WHERE opc.secao.id = :idDaSecao")
 	public Long contarPor(Integer idDaSecao);
 
 }
