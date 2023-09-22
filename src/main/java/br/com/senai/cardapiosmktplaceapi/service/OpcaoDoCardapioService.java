@@ -23,7 +23,7 @@ public interface OpcaoDoCardapioService {
 			@NotNull(message = "O cardápio é obrigatório.") 
 			Cardapio cardapio);
 	
-	public void atualizar(
+	public OpcaoDoCardapio atualizar(
 			@NotNull(message = "A opção do cardápio é obrigatória.") 
 			OpcaoDoCardapio opcaoDoCardapio);
 }

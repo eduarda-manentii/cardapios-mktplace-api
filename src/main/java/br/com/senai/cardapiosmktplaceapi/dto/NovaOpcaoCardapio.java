@@ -24,7 +24,7 @@ public class NovaOpcaoCardapio {
 	private BigDecimal preco;
 	
 	@NotNull(message = "O indicador de recomendação é obrigatório.")
-	private Confirmacao confirmacao;
+	private Confirmacao recomendado;
 	
 	@NotNull(message = "A seção é obrigatória.")
 	private Secao secao;

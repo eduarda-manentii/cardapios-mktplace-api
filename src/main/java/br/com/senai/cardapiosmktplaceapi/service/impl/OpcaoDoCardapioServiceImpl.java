@@ -30,24 +30,22 @@ public class OpcaoDoCardapioServiceImpl implements OpcaoDoCardapioService {
         Preconditions.checkNotNull(opcao, "A opção é obrigatória.");
         Preconditions.checkNotNull(cardapio, "O cardápio é obrigatório.");
         Preconditions.checkArgument(opcao.isAtiva() && cardapio.isAtiva(), "A opção ou o cardápio estão inativos.");
+        OpcaoDoCardapio opcaoDoCardapio = repository.buscarPor(opcao, cardapio);
 
-       // OpcaoDoCardapio opcaoDoCardapio = repository.buscarPor(opcao, cardapio);
-        //Preconditions.checkNotNull(opcaoDoCardapio, "Não foi encontrada a opção vinculada ao código do cardápio e opção informados.");
-
-        return null;
+        return opcaoDoCardapio;
     }
 
-//	@Override
-//	public OpcaoDoCardapio atualizar(OpcaoDoCardapio opcaoDoCardapio) {
-//		Cardapio cardapio = cardapioRepository.buscarPor(opcaoDoCardapio.getCardapio().getId());
-//		OpcaoDoCardapio opcao = repository.buscarPor(opcaoDoCardapio, cardapio);
-//		opcaoDoCardapio.setOpcao(opcaoDoCardapio.getOpcao());
-//		opcaoDoCardapio.setRecomendado(opcaoDoCardapio.getRecomendado());
-//		opcaoDoCardapio.setPreco(opcaoDoCardapio.getPreco());
-//		opcaoDoCardapio.setSecao(opcaoDoCardapio.getSecao());
-//		OpcaoDoCardapio opcaoCardapioAtualizado = repository.saveAndFlush(opcao);
-//		return buscarPor(opcaoCardapioAtualizado.getOpcao(), cardapio);
-//		
-//	}
+	@Override
+	public OpcaoDoCardapio atualizar(OpcaoDoCardapio opcaoDoCardapio) {
+		Cardapio cardapio = cardapioRepository.buscarPor(opcaoDoCardapio.getCardapio().getId());
+		OpcaoDoCardapio opcao = repository.buscarPor(opcaoDoCardapio.getOpcao(), cardapio);
+		opcaoDoCardapio.setOpcao(opcaoDoCardapio.getOpcao());
+		opcaoDoCardapio.setRecomendado(opcaoDoCardapio.getRecomendado());
+		opcaoDoCardapio.setPreco(opcaoDoCardapio.getPreco());
+		opcaoDoCardapio.setSecao(opcaoDoCardapio.getSecao());
+		OpcaoDoCardapio opcaoCardapioAtualizado = repository.saveAndFlush(opcao);
+		return buscarPor(opcaoCardapioAtualizado.getOpcao(), cardapio);
+		
+	}
     
 }

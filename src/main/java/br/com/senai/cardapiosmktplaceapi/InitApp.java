@@ -22,7 +22,7 @@ public class InitApp {
 	@Bean
 	public CommandLineRunner commandLineRuner(ApplicationContext ctx) {
 		return args -> {
-
+			System.out.println("Subiu");
 		};
 	}
 }

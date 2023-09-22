@@ -60,7 +60,7 @@ public class OpcaoController {
 		return ResponseEntity.ok(converter.toJsonMap(opcaoAlterada));
 	}
 	
-	@PatchMapping("/id/{id}/{status}")
+	@PatchMapping("/id/{id}/status/{status}")
 	public ResponseEntity<?> atualizarStatusPor(
 			@PathVariable("id")
 			Integer id, 

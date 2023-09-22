@@ -45,7 +45,6 @@ public interface CardapiosRepository extends JpaRepository<Cardapio, Integer> {
 			+ "ORDER BY oc.recomendado DESC, o.nome")
 	public Cardapio buscarPor(Integer id);
 	
-	
 	@Modifying
 	@Query(value = "UPDATE Cardapio c SET c.status = :status WHERE c.id  = :id")
 	public void atualizarPor(Integer id, Status status);

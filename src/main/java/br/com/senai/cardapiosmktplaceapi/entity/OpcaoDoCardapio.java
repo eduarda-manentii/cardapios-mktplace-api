@@ -55,8 +55,8 @@ public class OpcaoDoCardapio {
 	@Column(name = "preco")
 	private BigDecimal preco;
 	
-	@Enumerated(value = EnumType.STRING)
 	@Column(name = "recomendado")
+	@Enumerated(value = EnumType.STRING)
 	@NotNull(message = "O indicador de recomendação não pode ser nulo.")
 	private Confirmacao recomendado;
 	

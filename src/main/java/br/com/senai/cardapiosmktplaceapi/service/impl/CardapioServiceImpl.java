@@ -5,6 +5,7 @@ import java.math.RoundingMode;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -26,9 +27,10 @@ import br.com.senai.cardapiosmktplaceapi.repository.OpcoesRepository;
 import br.com.senai.cardapiosmktplaceapi.repository.RestaurantesRepository;
 import br.com.senai.cardapiosmktplaceapi.repository.SecoesRepository;
 import br.com.senai.cardapiosmktplaceapi.service.CardapioService;
+import br.com.senai.cardapiosmktplaceapi.service.RestauranteService;
 
 @Service
-public class CardapioServiceImp implements CardapioService {
+public class CardapioServiceImpl implements CardapioService {
 	
 	@Autowired
 	private CardapiosRepository repository;
@@ -41,6 +43,10 @@ public class CardapioServiceImp implements CardapioService {
 	
 	@Autowired
 	private RestaurantesRepository restaurantesRepository;
+	
+	
+	@Autowired @Qualifier("restauranteServiceImpl")
+	private RestauranteService restauranteService;
 
 	@Override
 	public Cardapio inserir(NovoCardapio novoCardapio) {
@@ -61,7 +67,7 @@ public class CardapioServiceImp implements CardapioService {
 			opcaoDoCardapio.setOpcao(opcao);
 			opcaoDoCardapio.setSecao(secao);
 			opcaoDoCardapio.setPreco(novaOpcao.getPreco());
-			opcaoDoCardapio.setRecomendado(novaOpcao.getConfirmacao());
+			opcaoDoCardapio.setRecomendado(novaOpcao.getRecomendado());
 			cardapioSalvo.getOpcoes().add(opcaoDoCardapio);
 			this.repository.saveAndFlush(cardapioSalvo);
 		}
@@ -70,8 +76,11 @@ public class CardapioServiceImp implements CardapioService {
 
 	@Override
 	public Cardapio alterar(CardapioSalvo cardapioSalvo) {
-		Restaurante restaurante = restaurantesRepository.buscarPor(cardapioSalvo.getRestaurante().getId());
+		Restaurante restaurante = restauranteService.buscarPor(cardapioSalvo.getRestaurante().getId());
 		Cardapio cardapio = repository.buscarPor(cardapioSalvo.getId());
+		Preconditions.checkNotNull(cardapio, "Não existe cardápio vinculado ao Id '" + cardapioSalvo.getId() + "'.");
+		Preconditions.checkArgument(restaurante.equals(cardapio.getRestaurante()), 
+				"O restaurante do cardápio não pode ser alterado.");
 		cardapio.setNome(cardapioSalvo.getNome());
 		cardapio.setDescricao(cardapio.getDescricao());
 		cardapio.setRestaurante(restaurante);
@@ -100,8 +109,9 @@ public class CardapioServiceImp implements CardapioService {
 
 	@Override
 	public void atualizarStatusPor(Integer id, Status status) {
-		Cardapio cardapio = buscarPor(id);
-		Preconditions.checkArgument(cardapio.getStatus() == status, "O status já foi salvo anteriormente.");
+		Cardapio cardapio = repository.buscarPor(id);
+		Preconditions.checkNotNull(cardapio, "Não foi encontrado cardápio para o ID informado");
+		Preconditions.checkArgument(cardapio.getStatus() != status, "O status já foi salvo anteriormente.");
 		this.repository.atualizarPor(id, status);
 	}
 	

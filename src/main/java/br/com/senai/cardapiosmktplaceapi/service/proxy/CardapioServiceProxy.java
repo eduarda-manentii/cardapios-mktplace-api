@@ -13,36 +13,36 @@ import br.com.senai.cardapiosmktplaceapi.entity.Restaurante;
 import br.com.senai.cardapiosmktplaceapi.entity.enums.Status;
 import br.com.senai.cardapiosmktplaceapi.service.CardapioService;
 
-//@Service
-//public class CardapioServiceProxy implements CardapioService {
-//	
-////	@Autowired
-//	@Qualifier("cardapioServiceImpl")
-//	private CardapioService service;
-//
-//	@Override
-//	public Cardapio inserir(NovoCardapio novoCardapio) {
-//		return service.inserir(novoCardapio);
-//	}
-//
-//	@Override
-//	public Cardapio alterar(CardapioSalvo cardapioSalvo) {
-//		return service.alterar(cardapioSalvo);
-//	}
-//
-//	@Override
-//	public Page<Cardapio> listarPor(Restaurante restaurante, Pageable paginacao) {
-//		return service.listarPor(restaurante, paginacao);
-//	}
-//
-//	@Override
-//	public Cardapio buscarPor(Integer id) {
-//		return service.buscarPor(id);
-//	}
-//
-//	@Override
-//	public void atualizarStatusPor(Integer id, Status status) {
-//		this.service.atualizarStatusPor(id, status);
-//	}
+@Service
+public class CardapioServiceProxy implements CardapioService {
+	
+	@Autowired
+	@Qualifier("cardapioServiceImpl")
+	private CardapioService service;
 
-//}
+	@Override
+	public Cardapio inserir(NovoCardapio novoCardapio) {
+		return service.inserir(novoCardapio);
+	}
+
+	@Override
+	public Cardapio alterar(CardapioSalvo cardapioSalvo) {
+		return service.alterar(cardapioSalvo);
+	}
+
+	@Override
+	public Page<Cardapio> listarPor(Restaurante restaurante, Pageable paginacao) {
+		return service.listarPor(restaurante, paginacao);
+	}
+
+	@Override
+	public Cardapio buscarPor(Integer id) {
+		return service.buscarPor(id);
+	}
+
+	@Override
+	public void atualizarStatusPor(Integer id, Status status) {
+		this.service.atualizarStatusPor(id, status);
+	}
+
+}

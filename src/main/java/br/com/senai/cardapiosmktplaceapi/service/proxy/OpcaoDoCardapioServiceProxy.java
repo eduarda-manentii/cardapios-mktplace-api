@@ -28,8 +28,8 @@ public class OpcaoDoCardapioServiceProxy implements OpcaoDoCardapioService {
 	}
 
 	@Override
-	public void atualizar(OpcaoDoCardapio opcaoDoCardapio) {
-		this.service.atualizar(opcaoDoCardapio);
+	public OpcaoDoCardapio atualizar(OpcaoDoCardapio opcaoDoCardapio) {
+		return this.service.atualizar(opcaoDoCardapio);
 	}
 
 }

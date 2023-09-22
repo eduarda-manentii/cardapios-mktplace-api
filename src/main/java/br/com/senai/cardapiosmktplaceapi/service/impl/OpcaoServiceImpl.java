@@ -57,7 +57,7 @@ public class OpcaoServiceImpl implements OpcaoService {
 	public Opcao buscarPor(Integer id) {
 		Opcao opcaoEncontrado = repository.buscarPor(id);
 		Preconditions.checkNotNull(opcaoEncontrado, "Não foi encontrado opção para o Id informado.");
-		Preconditions.checkArgument(opcaoEncontrado.isAtiva(), "O restaurante está inativo.");
+		Preconditions.checkArgument(opcaoEncontrado.isAtiva(), "A opção está inativo.");
 		return opcaoEncontrado;
 	}
 
