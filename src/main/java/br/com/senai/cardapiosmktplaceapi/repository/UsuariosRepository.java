@@ -20,6 +20,6 @@ public interface UsuariosRepository extends JpaRepository<Usuario, Integer> {
 
 	@Modifying @Transactional
 	@Query(value = "UPDATE Usuario u SET u.senha = :senha WHERE u.login = :login")
-	public void atualizarPor(String login,String senha);
+	public void atualizarPor(String login, String senha);
 	
 }
