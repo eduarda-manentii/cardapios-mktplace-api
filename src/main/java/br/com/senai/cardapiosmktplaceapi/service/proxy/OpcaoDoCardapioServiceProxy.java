@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
-import br.com.senai.cardapiosmktplaceapi.dto.NovaOpcaoCardapio;
 import br.com.senai.cardapiosmktplaceapi.entity.Cardapio;
 import br.com.senai.cardapiosmktplaceapi.entity.Opcao;
 import br.com.senai.cardapiosmktplaceapi.entity.OpcaoDoCardapio;
